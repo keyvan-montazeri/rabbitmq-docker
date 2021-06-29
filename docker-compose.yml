@@ -1,0 +1,42 @@
+version: '2'
+services:
+    mysql:
+        image: mysql:8
+        hostname: mysql
+        restart: unless-stopped
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'Y'
+        volumes:
+            - ./db:/var/lib/mysql:rw
+            - ./mysql:/docker-entrypoint-initdb.d
+        ports:
+            - "4006:3306"
+    rabbitmq:
+        image: docker.io/bitnami/rabbitmq:3.8
+        ports:
+            - '4369:4369'
+            - '5672:5672'
+            - '25672:25672'
+            - '15672:15672'
+    mq:
+        build:
+            context: .
+            dockerfile: ./mq/Dockerfile
+        hostname: mq
+        depends_on:
+            - mysql
+            - rabbitmq
+        volumes:
+            - ./mq:/app
+        ports:
+            - "8000:8000"
+    mq_workers:
+        build:
+            context: .
+            dockerfile: ./mq_workers/Dockerfile
+        hostname: mq_workers
+        depends_on:
+            - mysql
+            - rabbitmq
+        volumes:
+            - ./mq_workers:/app

@@ -1,0 +1,13 @@
+{
+  "name": "mq_workers",
+  "version": "1.0.0",
+  "description": "This project is made to provide sample code for a medium article",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.3",
+    "mysql": "^2.18.1"
+  }
+}

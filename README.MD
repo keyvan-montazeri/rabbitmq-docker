@@ -9,12 +9,12 @@
     ```
 
     Press `Ctrl+c` to stop the docker container.
-
-2. Go to <http://127.0.0.1:15672>
-3. Go to `Queues`
-4. Add a queue `Name: messages`
-5. in the Postman import `MQ.postman_collection.json`
-6. for MySQL test use `http://localhost:8000/api/mysql` and pass the follow variable in to the body:
+2. run `npm i` in ___mq___ and ___mq_workers___ projects
+3. Go to <http://127.0.0.1:15672>
+4. Go to `Queues`
+5. Add a queue `Name: messages`
+6. in the Postman import `MQ.postman_collection.json`
+7. for MySQL test use `http://localhost:8000/api/mysql` and pass the follow variable in to the body:
 
     ```json
         {
@@ -22,7 +22,7 @@
         }
     ```
 
-7. for MQ test use `http://localhost:8000/api/mq`
+8. for MQ test use `http://localhost:8000/api/mq`
 
 To remove:
 

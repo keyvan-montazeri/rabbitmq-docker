@@ -36,7 +36,6 @@ services:
             dockerfile: ./mq_workers/Dockerfile
         hostname: mq_workers
         depends_on:
-            - mysql
-            - rabbitmq
+            - mq
         volumes:
             - ./mq_workers:/app

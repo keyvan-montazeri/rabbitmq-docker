@@ -9,10 +9,10 @@ amqp.connect(CONN_URL, function (err, conn) {
 });
 
 export const publishToQueue = async (queueName, data) => {
-    ch.sendToQueue(queueName, new Buffer(data), {persistent: true});
+    ch.sendToQueue(queueName, new Buffer.from(data,'utf8'), {persistent: true});
 }
 
 process.on('exit', (code) => {
     ch.close();
-    console.log(`Closing rabbitmq channel`);
+    console.log('Closing rabbitmq channel');
 });

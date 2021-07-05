@@ -12,11 +12,9 @@ var connection = mysql.createConnection({
 amqp.connect(CONN_URL, function (err, conn) {
     conn.createChannel(function (err, ch) {
         ch.consume('messages', function (msg) {
-                //setTimeout(function(){
                   connection.query('INSERT INTO mq (msg,date) VALUES(?,?)', [msg.content.toString(),Date.now()]);
                   ch.ack(msg);
-                  //console.log('MQ Worker -- ADDED');
-               // },2000);
+                  console.log('MQ Worker -- ADDED');
             },{ noAck: false }
         );
     });
